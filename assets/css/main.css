@@ -3169,3 +3169,29 @@ input, select, textarea {
 		color: #555;
 	}
 
+/* Trailer Info */
+	.trailer-info {
+		border-top: 3px solid #c22;
+	}
+
+	.trailer-info h3 {
+		font-size: 1.4em;
+		color: #252122;
+		margin-bottom: 0.6em;
+	}
+
+	.trailer-info h6 {
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.8em;
+		color: #888;
+		margin: 1.25em 0 0.5em 0;
+	}
+
+	.trailer-info p {
+		text-align: justify;
+		font-size: 0.95em;
+		line-height: 1.7;
+		color: #555;
+	}
+
