@@ -3137,3 +3137,35 @@ input, select, textarea {
 		border-bottom-style: solid;
 	}
 
+/* Product Cards */
+	.product-card {
+		border-top: 3px solid #c22;
+		transition: box-shadow 0.25s ease, transform 0.25s ease;
+	}
+
+	.product-card:hover {
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+		transform: translateY(-3px);
+	}
+
+	.product-card h3 {
+		font-size: 1.35em;
+		margin-bottom: 0.4em;
+		color: #252122;
+	}
+
+	.product-card h6 {
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.8em;
+		color: #888;
+		margin: 1.25em 0 0.5em 0;
+	}
+
+	.product-card > p {
+		text-align: justify;
+		font-size: 0.95em;
+		line-height: 1.7;
+		color: #555;
+	}
+
