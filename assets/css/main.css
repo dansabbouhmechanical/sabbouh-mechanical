@@ -2310,6 +2310,10 @@ input, select, textarea {
 		padding: 4em 0 4em 0;
 	}
 
+		#main p {
+			text-align: justify;
+		}
+
 		#main:before {
 			content: '';
 			position: absolute;
@@ -3052,5 +3056,84 @@ input, select, textarea {
 		width: 5em;
 		height: 3.5em;
 		object-fit: contain;
+	}
+
+/* Service Cards */
+	.service-card {
+		background: #fff;
+		border-radius: 6px;
+		padding: 1.75em 1.5em;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+		height: 100%;
+		border-top: 3px solid #c22;
+		transition: box-shadow 0.25s ease, transform 0.25s ease;
+	}
+
+	.service-card:hover {
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+		transform: translateY(-3px);
+	}
+
+	.service-card h3 {
+		font-size: 1.35em;
+		margin-bottom: 0.6em;
+		color: #252122;
+	}
+
+	.service-card h6 {
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: 0.8em;
+		color: #888;
+		margin: 1.25em 0 0.5em 0;
+	}
+
+	.service-card p {
+		text-align: justify;
+		font-size: 0.95em;
+		line-height: 1.7;
+		color: #555;
+	}
+
+	ul.service-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.25em 0;
+	}
+
+	ul.service-list li {
+		position: relative;
+		padding: 0.35em 0 0.35em 1.4em;
+		font-size: 0.95em;
+		color: #444;
+	}
+
+	ul.service-list li:before {
+		content: '\f00c';
+		font-family: 'Font Awesome 5 Free';
+		font-weight: 900;
+		position: absolute;
+		left: 0;
+		color: #c22;
+		font-size: 0.85em;
+	}
+
+	.service-cta {
+		margin-top: 1em;
+		font-size: 0.9em !important;
+		color: #777 !important;
+		font-style: italic;
+	}
+
+	.service-cta a {
+		color: #c22;
+		font-weight: 600;
+		text-decoration: none;
+		border-bottom: 1px dotted #c22;
+	}
+
+	.service-cta a:hover {
+		color: #a00;
+		border-bottom-style: solid;
 	}
 
