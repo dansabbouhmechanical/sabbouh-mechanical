@@ -3174,6 +3174,47 @@ input, select, textarea {
 		border-top: 3px solid #c22;
 	}
 
+/* Installation Gallery */
+	.install-gallery {
+		margin-bottom: 2em;
+	}
+
+	.install-image-card {
+		position: relative;
+		overflow: hidden;
+		border-radius: 6px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		margin-bottom: 1.5em;
+		border-top: 3px solid #c22;
+		background: #fff;
+	}
+
+	.install-image-card img {
+		width: 100%;
+		height: 280px;
+		object-fit: contain;
+		background: #fff;
+		padding: 1em;
+		display: block;
+		transition: transform 0.4s ease;
+	}
+
+	.install-image-card:hover img {
+		transform: scale(1.03);
+	}
+
+	.install-label {
+		display: block;
+		text-align: center;
+		padding: 0.75em 0;
+		font-size: 1em;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #fff;
+		background: #252122;
+	}
+
 /* Ice Machine Section */
 	.ice-info {
 		border-top: 3px solid #c22;
