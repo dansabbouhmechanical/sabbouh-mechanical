@@ -519,12 +519,8 @@
 	<!--
 		Quote Request Modal
 		================================================================
-		FORMSPREE SETUP (do this once before the form will email you):
-		  1. Sign up at https://formspree.io (free tier is fine)
-		  2. Create a new form with destination email:
-		         dansabbouhmechanical@gmail.com
-		  3. Replace YOUR_FORM_ID below with the real form ID
-		     (e.g. action="https://formspree.io/f/abcdwxyz")
+		Wired to Formspree form ID: mjglywbk
+		Submissions are emailed to: dansabbouhmechanical@gmail.com
 		================================================================
 	-->
 	<div class="quote-modal" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle" hidden>
@@ -536,8 +532,8 @@
 				<h2 class="quote-modal__title" id="quoteModalTitle">Get a Free Quote</h2>
 				<p class="quote-modal__sub">Tell us what you need &mdash; we&rsquo;ll call you back the same day with honest pricing.</p>
 
-				<form class="quote-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-quote-form novalidate>
-					<input type="hidden" name="_subject" value="New Quote Request from Sabbouh Mechanical Website" />
+				<form class="quote-form" action="https://formspree.io/f/mjglywbk" method="POST" data-quote-form novalidate>
+					<input type="hidden" name="_subject" value="New Quote Request &mdash; Sabbouh Mechanical Website" />
 					<input type="hidden" name="_replyto" value="" data-quote-replyto />
 
 					<div class="quote-field">
@@ -566,7 +562,7 @@
 
 					<div class="quote-field">
 						<label class="quote-field__label" for="quoteDesc">Brief Description (optional)</label>
-						<textarea class="quote-field__input quote-field__textarea" id="quoteDesc" name="description" rows="3" placeholder="What&rsquo;s going on? Anything we should know before we call?"></textarea>
+						<textarea class="quote-field__input quote-field__textarea" id="quoteDesc" name="message" rows="3" placeholder="What&rsquo;s going on? Anything we should know before we call?"></textarea>
 					</div>
 
 					<button type="submit" class="quote-submit" data-quote-submit>
