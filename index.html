@@ -511,10 +511,85 @@
 	</div>
 
 	<!-- Floating "Book Free Quote" CTA -->
-	<a href="#contact" class="floating-quote-btn" aria-label="Book a free quote">
+	<button type="button" class="floating-quote-btn" aria-label="Book a free quote" data-quote-open>
 		<span class="pulse-dot" aria-hidden="true"></span>
 		Book Free Quote
-	</a>
+	</button>
+
+	<!--
+		Quote Request Modal
+		================================================================
+		FORMSPREE SETUP (do this once before the form will email you):
+		  1. Sign up at https://formspree.io (free tier is fine)
+		  2. Create a new form with destination email:
+		         dansabbouhmechanical@gmail.com
+		  3. Replace YOUR_FORM_ID below with the real form ID
+		     (e.g. action="https://formspree.io/f/abcdwxyz")
+		================================================================
+	-->
+	<div class="quote-modal" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle" hidden>
+		<div class="quote-modal__backdrop" data-quote-close></div>
+		<div class="quote-modal__panel" role="document">
+			<button type="button" class="quote-modal__close" aria-label="Close quote form" data-quote-close>&times;</button>
+
+			<div class="quote-modal__body" data-quote-form-wrap>
+				<h2 class="quote-modal__title" id="quoteModalTitle">Get a Free Quote</h2>
+				<p class="quote-modal__sub">Tell us what you need &mdash; we&rsquo;ll call you back the same day with honest pricing.</p>
+
+				<form class="quote-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-quote-form novalidate>
+					<input type="hidden" name="_subject" value="New Quote Request from Sabbouh Mechanical Website" />
+					<input type="hidden" name="_replyto" value="" data-quote-replyto />
+
+					<div class="quote-field">
+						<label class="quote-field__label" for="quoteName">Your Name</label>
+						<input class="quote-field__input" id="quoteName" name="name" type="text" placeholder="John Smith" required autocomplete="name" />
+					</div>
+
+					<div class="quote-field">
+						<label class="quote-field__label" for="quotePhone">Phone Number</label>
+						<input class="quote-field__input" id="quotePhone" name="phone" type="tel" placeholder="(905) 555-0123" required autocomplete="tel" />
+					</div>
+
+					<div class="quote-field">
+						<label class="quote-field__label" for="quoteService">What do you need help with?</label>
+						<select class="quote-field__input quote-field__select" id="quoteService" name="service" required>
+							<option value="" disabled selected>Select a service</option>
+							<option>Commercial Refrigeration</option>
+							<option>Commercial HVAC</option>
+							<option>Residential HVAC</option>
+							<option>Ice Machine Service</option>
+							<option>Refrigeration Trailer Rental</option>
+							<option>Emergency Repair</option>
+							<option>Other</option>
+						</select>
+					</div>
+
+					<div class="quote-field">
+						<label class="quote-field__label" for="quoteDesc">Brief Description (optional)</label>
+						<textarea class="quote-field__input quote-field__textarea" id="quoteDesc" name="description" rows="3" placeholder="What&rsquo;s going on? Anything we should know before we call?"></textarea>
+					</div>
+
+					<button type="submit" class="quote-submit" data-quote-submit>
+						<span class="quote-submit__label">Request My Quote</span>
+						<span class="quote-submit__spinner" aria-hidden="true"></span>
+					</button>
+
+					<p class="quote-error" data-quote-error hidden>
+						Something went wrong. Please call us directly at <a href="tel:9052526106">(905) 252-6106</a> or email <a href="mailto:dansabbouhmechanical@gmail.com">dansabbouhmechanical@gmail.com</a>
+					</p>
+
+					<p class="quote-trust">30+ years serving the GTA &middot; Same-day response &middot; No obligation</p>
+				</form>
+			</div>
+
+			<div class="quote-modal__success" data-quote-success hidden>
+				<div class="quote-success__check" aria-hidden="true">&#10003;</div>
+				<h2 class="quote-success__title">Got it!</h2>
+				<p class="quote-success__body">We&rsquo;ll call you back within the hour during business hours, or first thing tomorrow morning.</p>
+				<p class="quote-success__call">Need it urgently? Call us directly at <a href="tel:9052526106"><strong>(905) 252-6106</strong></a></p>
+			</div>
+		</div>
+	</div>
 
 	<!-- Scripts -->
 	<script src="assets/js/jquery.min.js"></script>
@@ -523,6 +598,7 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script src="assets/js/quote-modal.js"></script>
 
 </body>
 
