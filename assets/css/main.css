@@ -4946,7 +4946,9 @@ input, select, textarea {
 		background: #E24B4A;
 		color: #ffffff !important;
 		padding: 14px 22px;
+		border: 0;
 		border-radius: 6px;
+		font-family: inherit;
 		font-size: 14px;
 		font-weight: 500;
 		line-height: 1;
@@ -4954,6 +4956,8 @@ input, select, textarea {
 		cursor: pointer;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 		transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+		-webkit-appearance: none;
+		appearance: none;
 	}
 
 	.floating-quote-btn:hover,
@@ -4996,6 +5000,306 @@ input, select, textarea {
 
 	@media (prefers-reduced-motion: reduce) {
 		.floating-quote-btn .pulse-dot {
+			animation: none;
+		}
+	}
+
+/* Quote Request Modal */
+
+	.quote-modal {
+		position: fixed;
+		inset: 0;
+		z-index: 1100;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 16px;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.2s ease;
+	}
+
+	.quote-modal[hidden] {
+		display: none;
+	}
+
+	.quote-modal.is-open {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.quote-modal__backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.5);
+	}
+
+	.quote-modal__panel {
+		position: relative;
+		width: 480px;
+		max-width: 100%;
+		max-height: calc(100vh - 32px);
+		overflow-y: auto;
+		background: #ffffff;
+		border-radius: 12px;
+		padding: 2rem;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+		transform: translateY(12px);
+		transition: transform 0.2s ease;
+		box-sizing: border-box;
+	}
+
+	.quote-modal.is-open .quote-modal__panel {
+		transform: translateY(0);
+	}
+
+	.quote-modal__close {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: transparent;
+		border: 0;
+		font-size: 24px;
+		line-height: 1;
+		color: #999;
+		cursor: pointer;
+		border-radius: 6px;
+		transition: color 0.2s ease, background-color 0.2s ease;
+		-webkit-appearance: none;
+		appearance: none;
+	}
+
+	.quote-modal__close:hover,
+	.quote-modal__close:focus {
+		color: #333;
+		background: #f3f3f3;
+		outline: 0;
+	}
+
+	.quote-modal__title {
+		font-size: 24px;
+		font-weight: 500;
+		color: #1a1a1a;
+		margin: 0 0 6px 0;
+		line-height: 1.2;
+	}
+
+	.quote-modal__sub {
+		font-size: 14px;
+		color: #666;
+		line-height: 1.5;
+		margin: 0 0 1.5rem 0;
+	}
+
+	.quote-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin: 0;
+	}
+
+	.quote-field {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.quote-field__label {
+		font-size: 13px;
+		font-weight: 500;
+		color: #333;
+		margin-bottom: 6px;
+	}
+
+	.quote-field__input {
+		width: 100%;
+		padding: 12px 14px;
+		border: 1px solid #ddd;
+		border-radius: 6px;
+		font-size: 14px;
+		font-family: inherit;
+		color: #1a1a1a;
+		background: #ffffff;
+		box-sizing: border-box;
+		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+		-webkit-appearance: none;
+		appearance: none;
+	}
+
+	.quote-field__input::placeholder {
+		color: #aaa;
+	}
+
+	.quote-field__input:focus {
+		border-color: #185FA5;
+		outline: 0;
+		box-shadow: 0 0 0 3px rgba(24, 95, 165, 0.15);
+	}
+
+	.quote-field__textarea {
+		resize: vertical;
+		min-height: 84px;
+		line-height: 1.5;
+	}
+
+	.quote-field__select {
+		background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+		background-repeat: no-repeat;
+		background-position: right 12px center;
+		background-size: 16px;
+		padding-right: 38px;
+	}
+
+	.quote-submit {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		width: 100%;
+		padding: 14px;
+		background: #E24B4A;
+		color: #ffffff;
+		border: 0;
+		border-radius: 6px;
+		font-size: 15px;
+		font-weight: 500;
+		font-family: inherit;
+		line-height: 1;
+		cursor: pointer;
+		margin-top: 0.25rem;
+		transition: background-color 0.2s ease;
+		-webkit-appearance: none;
+		appearance: none;
+	}
+
+	.quote-submit:hover:not(:disabled),
+	.quote-submit:focus:not(:disabled) {
+		background: #c63d3c;
+		outline: 0;
+	}
+
+	.quote-submit:disabled {
+		opacity: 0.85;
+		cursor: not-allowed;
+	}
+
+	.quote-submit__spinner {
+		display: none;
+		width: 16px;
+		height: 16px;
+		border: 2px solid rgba(255, 255, 255, 0.4);
+		border-top-color: #ffffff;
+		border-radius: 50%;
+		animation: quote-spin 0.7s linear infinite;
+	}
+
+	.quote-submit.is-loading .quote-submit__spinner {
+		display: inline-block;
+	}
+
+	.quote-submit.is-loading .quote-submit__label {
+		opacity: 0.85;
+	}
+
+	@keyframes quote-spin {
+		to { transform: rotate(360deg); }
+	}
+
+	.quote-error {
+		font-size: 13px;
+		color: #dc2626;
+		line-height: 1.5;
+		margin: 12px 0 0 0;
+	}
+
+	.quote-error a {
+		color: #dc2626;
+		text-decoration: underline;
+	}
+
+	.quote-trust {
+		font-size: 12px;
+		color: #999;
+		text-align: center;
+		margin: 12px 0 0 0;
+	}
+
+	.quote-modal__success {
+		text-align: center;
+		padding: 1rem 0;
+	}
+
+	.quote-success__check {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		background: rgba(16, 185, 129, 0.12);
+		color: #10b981;
+		font-size: 32px;
+		line-height: 1;
+		margin: 0 auto;
+	}
+
+	.quote-success__title {
+		font-size: 22px;
+		font-weight: 500;
+		color: #1a1a1a;
+		margin: 1rem 0 0 0;
+	}
+
+	.quote-success__body {
+		font-size: 14px;
+		color: #666;
+		line-height: 1.6;
+		margin: 8px 0 0 0;
+	}
+
+	.quote-success__call {
+		font-size: 13px;
+		color: #888;
+		margin: 1rem 0 0 0;
+	}
+
+	.quote-success__call a {
+		color: #1a1a1a;
+		text-decoration: none;
+	}
+
+	.quote-success__call a:hover {
+		color: #E24B4A;
+	}
+
+	.quote-modal-open {
+		overflow: hidden;
+	}
+
+	@media screen and (max-width: 480px) {
+		.quote-modal {
+			padding: 12px;
+		}
+
+		.quote-modal__panel {
+			padding: 1.5rem;
+		}
+
+		.quote-modal__title {
+			font-size: 20px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.quote-modal,
+		.quote-modal__panel,
+		.quote-submit__spinner {
+			transition: none;
 			animation: none;
 		}
 	}
