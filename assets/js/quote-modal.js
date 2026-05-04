@@ -16,7 +16,17 @@
 
 	var lastTrigger = null;
 	var autoCloseTimer = null;
+	var submitLabel = submitBtn ? submitBtn.querySelector('.quote-submit__label') : null;
+	var defaultSubmitText = submitLabel ? submitLabel.textContent : 'Request My Quote';
 	var focusableSelector = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+	function setFieldsDisabled(disabled) {
+		if (!form) return;
+		var fields = form.querySelectorAll('input:not([type="hidden"]), select, textarea');
+		for (var k = 0; k < fields.length; k++) {
+			fields[k].disabled = disabled;
+		}
+	}
 
 	function getFocusable() {
 		return Array.prototype.slice.call(panel.querySelectorAll(focusableSelector))
@@ -62,6 +72,8 @@
 		errorBox.hidden = true;
 		submitBtn.disabled = false;
 		submitBtn.classList.remove('is-loading');
+		if (submitLabel) submitLabel.textContent = defaultSubmitText;
+		setFieldsDisabled(false);
 		formWrap.hidden = false;
 		successBox.hidden = true;
 	}
@@ -109,6 +121,8 @@
 		errorBox.hidden = false;
 		submitBtn.disabled = false;
 		submitBtn.classList.remove('is-loading');
+		if (submitLabel) submitLabel.textContent = defaultSubmitText;
+		setFieldsDisabled(false);
 	}
 
 	function handleSubmit(e) {
@@ -127,16 +141,11 @@
 		}
 
 		var action = form.getAttribute('action') || '';
-		// If Formspree hasn't been wired up yet, fall back to the success state
-		// so local previews don't error out, but log a warning for the dev.
-		if (action.indexOf('YOUR_FORM_ID') !== -1) {
-			console.warn('[quote-modal] Formspree action is not configured. Replace YOUR_FORM_ID in index.html with your real Formspree form ID.');
-			showSuccess();
-			return;
-		}
 
 		submitBtn.disabled = true;
 		submitBtn.classList.add('is-loading');
+		if (submitLabel) submitLabel.textContent = 'Sending...';
+		setFieldsDisabled(true);
 
 		var data = new FormData(form);
 
