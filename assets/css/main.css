@@ -4223,19 +4223,28 @@ input, select, textarea {
 		border-top: 0;
 	}
 
-/* Ice Machines (dark anchor section) */
+/* Ice Machines (dark frame with centered white card — mirrors About Us) */
 
 	#ice {
 		position: relative;
 		background: #1a1a1a;
+		width: 100%;
+		max-width: none;
+		margin: 0;
+		padding: 3rem 1.5rem;
+		box-sizing: border-box;
 	}
 
 	#ice .ice-section {
+		width: 100%;
 		max-width: 1100px;
 		margin: 0 auto;
-		padding: 3rem 2rem;
-		background: transparent;
+		padding: 2.5rem 2rem;
+		background: #ffffff;
+		border-radius: 12px;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 		text-align: center;
+		box-sizing: border-box;
 	}
 
 	#ice .ice-header {
@@ -4246,7 +4255,7 @@ input, select, textarea {
 
 	#ice .ice-eyebrow {
 		display: block;
-		color: #6BA3DD;
+		color: #185FA5;
 		font-size: 11px;
 		font-weight: 500;
 		letter-spacing: 1.5px;
@@ -4257,7 +4266,7 @@ input, select, textarea {
 	#ice .ice-heading {
 		font-size: 26px;
 		font-weight: 500;
-		color: #fff;
+		color: #1a1a1a;
 		line-height: 1.25;
 		margin: 0 0 0.75rem 0;
 		background: transparent;
@@ -4269,7 +4278,7 @@ input, select, textarea {
 	#ice .ice-sub {
 		font-size: 14px;
 		line-height: 1.6;
-		color: #aaa;
+		color: #666;
 		max-width: 520px;
 		margin: 0 auto;
 	}
@@ -4277,32 +4286,36 @@ input, select, textarea {
 	#ice .ice-split {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		background: #2a2a2a;
-		border: 0.5px solid #3a3a3a;
+		background: #ffffff;
+		border: 0.5px solid #e5e5e5;
 		border-radius: 12px;
 		overflow: hidden;
 		margin-top: 1.5rem;
 		text-align: left;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+	}
+
+	#ice .ice-split--text-right {
+		grid-template-columns: 1fr 1fr;
 	}
 
 	#ice .ice-split__media {
-		background: #1a1a1a;
-		min-height: 280px;
+		background: #f5f5f5;
+		min-height: 260px;
 		overflow: hidden;
 	}
 
 	#ice .ice-split__media img {
 		width: 100%;
 		height: 100%;
-		min-height: 280px;
+		min-height: 260px;
 		object-fit: contain;
 		display: block;
 		padding: 1rem;
 	}
 
 	#ice .ice-split__body {
-		padding: 2rem 1.75rem;
+		padding: 1.75rem 1.5rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -4321,19 +4334,19 @@ input, select, textarea {
 	}
 
 	#ice .ice-badge--red {
-		background: rgba(226, 75, 74, 0.15);
-		color: #ff7a78;
+		background: #fef0ef;
+		color: #E24B4A;
 	}
 
 	#ice .ice-badge--blue {
-		background: rgba(24, 95, 165, 0.2);
-		color: #6BA3DD;
+		background: #e9f0fa;
+		color: #185FA5;
 	}
 
 	#ice .ice-split__title {
 		font-size: 19px;
 		font-weight: 500;
-		color: #ffffff;
+		color: #1a1a1a;
 		margin: 0 0 0.6rem 0;
 		line-height: 1.3;
 	}
@@ -4341,7 +4354,7 @@ input, select, textarea {
 	#ice .ice-split__desc {
 		font-size: 13px;
 		line-height: 1.7;
-		color: #cccccc;
+		color: #555;
 		text-align: left;
 		margin: 0 0 1rem 0;
 	}
@@ -4350,7 +4363,7 @@ input, select, textarea {
 		display: block;
 		font-size: 10px;
 		font-weight: 500;
-		color: #888888;
+		color: #888;
 		letter-spacing: 1px;
 		text-transform: uppercase;
 		margin: 0 0 0.5rem 0;
@@ -4366,7 +4379,7 @@ input, select, textarea {
 		position: relative;
 		padding: 0.2rem 0 0.2rem 1.25rem;
 		font-size: 13px;
-		color: #dddddd;
+		color: #444;
 		line-height: 1.5;
 	}
 
@@ -4381,8 +4394,8 @@ input, select, textarea {
 	}
 
 	#ice .ice-cta {
-		background: #2a2a2a;
-		border: 0.5px solid #3a3a3a;
+		background: #fafafa;
+		border: 0;
 		border-radius: 8px;
 		padding: 1rem;
 		margin-top: 1.5rem;
@@ -4392,7 +4405,7 @@ input, select, textarea {
 	}
 
 	#ice .ice-cta__lead {
-		color: #ffffff;
+		color: #1a1a1a;
 		font-weight: 500;
 		margin-right: 0.4rem;
 	}
@@ -4405,10 +4418,14 @@ input, select, textarea {
 	}
 
 	#ice .ice-cta__link:hover {
-		color: #ff6b6a;
+		color: #c23a39;
 	}
 
 	@media screen and (max-width: 768px) {
+		#ice {
+			padding: 3rem 1.25rem;
+		}
+
 		#ice .ice-split,
 		#ice .ice-split--text-right {
 			grid-template-columns: 1fr;
@@ -4425,6 +4442,10 @@ input, select, textarea {
 	}
 
 	@media screen and (max-width: 640px) {
+		#ice {
+			padding: 2.5rem 1rem;
+		}
+
 		#ice .ice-section {
 			padding: 2rem 1.25rem;
 		}
