@@ -3058,6 +3058,82 @@ input, select, textarea {
 		object-fit: contain;
 	}
 
+/* About Section (intro) */
+	#intro .about-section {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2.5rem;
+		max-width: 1100px;
+		margin: 3em auto 0 auto;
+		padding: 2.5rem 2rem;
+		background: #fff;
+		border-radius: 6px;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+		text-align: left;
+	}
+
+	#intro .about-aside {
+		flex: 0 0 200px;
+		max-width: 220px;
+	}
+
+	#intro .about-eyebrow {
+		display: block;
+		color: #d52349;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		margin-bottom: 0.75rem;
+	}
+
+	#intro .about-heading {
+		font-size: 26px;
+		font-weight: 500;
+		line-height: 1.3;
+		color: #252122;
+		margin: 0;
+	}
+
+	#intro .about-body {
+		flex: 1;
+		min-width: 280px;
+	}
+
+	#intro .about-body p {
+		text-align: left;
+		font-size: 15.5px;
+		line-height: 1.7;
+		color: #5d5d5d;
+		margin: 0 0 1rem 0;
+	}
+
+	#intro .about-body p:last-child {
+		margin-bottom: 0;
+	}
+
+	@media screen and (max-width: 768px) {
+		#intro .about-section {
+			flex-direction: column;
+			gap: 1.25rem;
+			padding: 2rem 1.25rem;
+			margin-top: 2em;
+		}
+
+		#intro .about-aside {
+			flex: 1 1 auto;
+			max-width: 100%;
+		}
+
+		#intro .about-heading {
+			font-size: 22px;
+		}
+
+		#intro .about-body p {
+			font-size: 15px;
+		}
+	}
+
 /* Service Cards */
 	.service-card {
 		background: #fff;
