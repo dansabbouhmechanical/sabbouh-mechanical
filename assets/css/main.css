@@ -4501,7 +4501,7 @@ input, select, textarea {
 
 	#ice .ice-split {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr 280px;
 		background: #ffffff;
 		border: 0.5px solid #e5e5e5;
 		border-radius: 12px;
@@ -4512,27 +4512,32 @@ input, select, textarea {
 	}
 
 	#ice .ice-split--text-right {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 280px 1fr;
 	}
 
 	#ice .ice-split__media {
 		background: #f5f5f5;
-		min-height: 180px;
+		height: 220px;
 		max-height: 220px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		overflow: hidden;
 	}
 
 	#ice .ice-split__media img {
 		width: 100%;
 		height: 100%;
-		min-height: 180px;
 		max-height: 220px;
-		object-fit: cover;
+		object-fit: contain;
+		object-position: center;
+		padding: 1rem;
 		display: block;
+		box-sizing: border-box;
 	}
 
 	#ice .ice-split__body {
-		padding: 1.75rem 1.5rem;
+		padding: 1.5rem 1.5rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -4644,18 +4649,20 @@ input, select, textarea {
 			grid-template-columns: 1fr;
 		}
 
+		#ice .ice-split .ice-split__media,
 		#ice .ice-split--text-right .ice-split__media {
 			order: -1;
 		}
 
 		#ice .ice-split__media {
-			min-height: 160px;
-			max-height: 200px;
+			width: 100%;
+			height: 180px;
+			max-height: 180px;
 		}
 
 		#ice .ice-split__media img {
-			min-height: 160px;
-			max-height: 200px;
+			height: 100%;
+			max-height: 180px;
 		}
 	}
 
@@ -4668,10 +4675,13 @@ input, select, textarea {
 			font-size: 22px;
 		}
 
-		#ice .ice-split__media,
+		#ice .ice-split__media {
+			height: 160px;
+			max-height: 160px;
+		}
+
 		#ice .ice-split__media img {
-			min-height: 140px;
-			max-height: 180px;
+			max-height: 160px;
 		}
 
 		#ice .ice-split__body {
