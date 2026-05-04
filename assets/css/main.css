@@ -2233,7 +2233,7 @@ input, select, textarea {
 		width: 100%;
 		min-height: 400px;
 		margin: 0;
-		background: #1a1a1a url("../../images/truck.jpg") center center / cover no-repeat;
+		background: #262626 url("../../images/truck.jpg") center center / cover no-repeat;
 		overflow: hidden;
 	}
 
@@ -2428,11 +2428,11 @@ input, select, textarea {
 	#intro {
 		text-align: center;
 		overflow: hidden;
-		background: #1a1a1a;
+		background: #262626;
 		width: 100%;
 		max-width: none;
 		margin: 0;
-		padding: 3rem 1.5rem;
+		padding: 4rem 1.5rem;
 		box-sizing: border-box;
 	}
 
@@ -2498,7 +2498,7 @@ input, select, textarea {
 
 	#footer {
 		position: relative;
-		background: #1a1a1a;
+		background: #262626;
 		color: #e5e5e5;
 		padding: 0;
 	}
@@ -3261,10 +3261,10 @@ input, select, textarea {
 		width: 100%;
 		max-width: 1100px;
 		margin: 0 auto;
-		padding: 2.5rem 2rem;
+		padding: 3rem 2.5rem;
 		background: #ffffff;
 		border-radius: 12px;
-		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 		text-align: left;
 		box-sizing: border-box;
 	}
@@ -3313,21 +3313,21 @@ input, select, textarea {
 	@media screen and (max-width: 1280px) {
 		#intro.container {
 			width: 100%;
-			padding: 3rem 1.5rem;
+			padding: 4rem 1.5rem;
 		}
 		#intro.container > section { padding: 0; margin: 0; }
 	}
 	@media screen and (max-width: 980px) {
 		#intro.container {
 			width: 100%;
-			padding: 3rem 1.5rem;
+			padding: 4rem 1.5rem;
 		}
 		#intro.container > section { padding: 0; margin: 0; }
 	}
 	@media screen and (max-width: 736px) {
 		#intro.container {
 			width: 100%;
-			padding: 2.5rem 1rem;
+			padding: 3rem 1rem;
 		}
 		#intro.container > section { padding: 0; margin: 0; border-top: 0; }
 	}
