@@ -4521,6 +4521,10 @@ input, select, textarea {
 		grid-template-columns: 280px 1fr;
 	}
 
+	#ice .ice-split--no-media {
+		grid-template-columns: 1fr;
+	}
+
 	#ice .ice-split__media {
 		background: #ffffff;
 		height: 220px;
