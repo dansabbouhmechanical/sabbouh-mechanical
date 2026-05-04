@@ -3165,19 +3165,75 @@ input, select, textarea {
 	}
 
 
-        .topright{
-              position: absolute;
-              top: 6%;
-              right: 5%;
-              font-size: 18px;
-        }
+/* Header actions (Call + Email pill buttons) */
+	.header-actions {
+		position: absolute;
+		top: 1.5em;
+		right: 1.5em;
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		z-index: 5;
+	}
 
-        .topright1{
-              position: absolute;
-              top: 10%;
-              right: 5%;
-              font-size: 18px;
-        }
+	.header-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		height: 40px;
+		padding: 0 18px;
+		border-radius: 6px;
+		font-size: 14px;
+		font-weight: 500;
+		color: #ffffff !important;
+		text-decoration: none;
+		line-height: 1;
+		white-space: nowrap;
+		transition: background-color 0.2s ease, transform 0.15s ease;
+	}
+
+	.header-btn i {
+		font-size: 13px;
+		color: #ffffff;
+	}
+
+	.header-btn--call {
+		background: #185FA5;
+	}
+
+	.header-btn--call:hover {
+		background: #134d87;
+	}
+
+	.header-btn--email {
+		background: #E24B4A;
+	}
+
+	.header-btn--email:hover {
+		background: #c23a39;
+	}
+
+	@media screen and (max-width: 768px) {
+		.header-actions {
+			top: 1em;
+			right: 1em;
+			gap: 6px;
+		}
+
+		.header-btn {
+			height: 36px;
+			padding: 0 12px;
+			font-size: 13px;
+		}
+
+		.header-btn span {
+			display: none;
+		}
+
+		.header-btn i {
+			font-size: 14px;
+		}
+	}
 
 /* Uniform card images */
 	.box .image.featured {
@@ -4214,6 +4270,7 @@ input, select, textarea {
 
 	#main #installations,
 	#main #products,
+	#main #ice,
 	#main #trailer {
 		background: #ffffff;
 		border-top: 0.5px solid #e5e5e5;
@@ -4223,15 +4280,15 @@ input, select, textarea {
 		border-top: 0;
 	}
 
-/* Ice Machines (dark frame with centered white card — mirrors About Us) */
+/* Ice Machines (white section — mirrors Products) */
 
 	#ice {
 		position: relative;
-		background: #1a1a1a;
+		background: #ffffff;
 		width: 100%;
 		max-width: none;
 		margin: 0;
-		padding: 3rem 1.5rem;
+		padding: 0;
 		box-sizing: border-box;
 	}
 
@@ -4240,9 +4297,9 @@ input, select, textarea {
 		max-width: 1100px;
 		margin: 0 auto;
 		padding: 2.5rem 2rem;
-		background: #ffffff;
-		border-radius: 12px;
-		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+		background: transparent;
+		border-radius: 0;
+		box-shadow: none;
 		text-align: center;
 		box-sizing: border-box;
 	}
@@ -4301,17 +4358,18 @@ input, select, textarea {
 
 	#ice .ice-split__media {
 		background: #f5f5f5;
-		min-height: 260px;
+		min-height: 180px;
+		max-height: 220px;
 		overflow: hidden;
 	}
 
 	#ice .ice-split__media img {
 		width: 100%;
 		height: 100%;
-		min-height: 260px;
-		object-fit: contain;
+		min-height: 180px;
+		max-height: 220px;
+		object-fit: cover;
 		display: block;
-		padding: 1rem;
 	}
 
 	#ice .ice-split__body {
@@ -4421,11 +4479,7 @@ input, select, textarea {
 		color: #c23a39;
 	}
 
-	@media screen and (max-width: 768px) {
-		#ice {
-			padding: 3rem 1.25rem;
-		}
-
+	@media screen and (max-width: 1024px) {
 		#ice .ice-split,
 		#ice .ice-split--text-right {
 			grid-template-columns: 1fr;
@@ -4435,23 +4489,30 @@ input, select, textarea {
 			order: -1;
 		}
 
-		#ice .ice-split__media,
+		#ice .ice-split__media {
+			min-height: 160px;
+			max-height: 200px;
+		}
+
 		#ice .ice-split__media img {
-			min-height: 220px;
+			min-height: 160px;
+			max-height: 200px;
 		}
 	}
 
 	@media screen and (max-width: 640px) {
-		#ice {
-			padding: 2.5rem 1rem;
-		}
-
 		#ice .ice-section {
 			padding: 2rem 1.25rem;
 		}
 
 		#ice .ice-heading {
 			font-size: 22px;
+		}
+
+		#ice .ice-split__media,
+		#ice .ice-split__media img {
+			min-height: 140px;
+			max-height: 180px;
 		}
 
 		#ice .ice-split__body {
