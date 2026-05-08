@@ -5300,11 +5300,6 @@ body button {
 	-moz-osx-font-smoothing: grayscale;
 	font-feature-settings: 'cv02','cv03','cv04','cv11';
 }
-body {
-	font-size: 15px;
-	line-height: 1.7;
-	letter-spacing: -0.005em;
-}
 h1, h2, h3, h4, h5, h6 {
 	font-family: var(--font-sans) !important;
 	color: var(--ink) !important;
@@ -5384,9 +5379,11 @@ body::before {
 }
 #nav ul li a:hover { color: var(--brand-red) !important; }
 #nav ul li.current > a {
-	color: var(--brand-red) !important;
-	box-shadow: inset 0 -2px 0 var(--brand-red) !important;
+	background: var(--brand-red) !important;
+	color: #ffffff !important;
+	font-weight: 600 !important;
 }
+#nav ul li.current > a:hover { color: #ffffff !important; }
 #nav ul li.nav-cta > a {
 	background: var(--brand-red) !important;
 	color: #fff !important;
