@@ -491,13 +491,21 @@ small { font-size: 13px; }
 
 .hero-stacked {
 	background: #0F2240;
-	padding: 28px 24px;
 	display: flex;
 	flex-direction: column;
-	gap: 22px;
+	justify-content: center;
+	padding: 0;
+	position: relative;
+}
+
+.equipment-section {
+	padding: 28px 24px 16px;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
 }
-@media (min-width: 768px) { .hero-stacked { padding: 32px 28px; gap: 24px; } }
+@media (min-width: 768px) { .equipment-section { padding: 32px 28px 18px; } }
 
 .hero-side-label {
 	display: block;
@@ -519,7 +527,7 @@ small { font-size: 13px; }
 	flex-direction: column;
 	justify-content: flex-end;
 	padding: 14px 14px 12px;
-	min-height: 76px;
+	min-height: 80px;
 	background: #1A2A4A;
 	border-radius: 10px;
 	text-decoration: none;
@@ -546,43 +554,47 @@ small { font-size: 13px; }
 	line-height: 1.2;
 }
 
-.hero-logo-section {
-	border-top: 1px solid rgba(255,255,255,0.10);
-	padding-top: 20px;
-}
-.hero-logo-grid {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 6px;
-}
-.hero-logo-card {
+.logo-ticker {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	height: 42px;
-	padding: 5px;
-	background: #fff;
-	border-radius: 6px;
+	gap: 12px;
+	background: rgba(0,0,0,0.30);
+	border-top: 1px solid rgba(255,255,255,0.10);
+	padding: 12px 24px;
+	overflow: hidden;
 }
-.hero-logo-card img {
-	max-width: 100%;
-	max-height: 100%;
-	object-fit: contain;
-}
-.hero-logo-card--more {
-	background: rgba(255,255,255,0.08);
+.ticker-label {
+	flex-shrink: 0;
+	font-size: 9px;
+	font-weight: 500;
 	color: #94A3B8;
-	font-size: 11px;
-	font-weight: 600;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
 }
+.ticker-list {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	min-width: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	font-size: 11px;
+	font-weight: 500;
+	color: #94A3B8;
+}
+.ticker-item { color: #fff; }
+.ticker-sep { color: #475569; }
+.ticker-more { color: var(--brand-amber); font-weight: 600; }
 
 @media (max-width: 899px) {
-	.hero-stacked { order: -1; padding: 22px 18px; gap: 18px; }
+	.hero-stacked { order: -1; }
+	.equipment-section { padding: 22px 18px 14px; }
+	.logo-ticker { padding: 10px 18px; gap: 10px; }
+	.ticker-list { font-size: 10px; gap: 10px; }
 }
-@media (max-width: 480px) {
-	.hero-logo-grid { grid-template-columns: repeat(3, 1fr); }
-	.hero-logo-grid > .hero-logo-card:nth-last-child(-n+2):not(.hero-logo-card--more) { display: none; }
+@media (max-width: 520px) {
+	.ticker-list .ticker-item:nth-of-type(n+4),
+	.ticker-list .ticker-sep:nth-of-type(n+4) { display: none; }
 }
 
 /* ---- Page header (inner pages) -------------------------------- */
