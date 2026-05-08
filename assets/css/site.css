@@ -937,40 +937,6 @@ a.contact-row__value:hover { color: var(--brand-red); }
 }
 .footer-bottom .spacer { flex: 1; }
 
-/* ---- Floating quote button ------------------------------------ */
-
-.floating-quote-btn {
-	position: fixed;
-	bottom: 22px; right: 22px;
-	z-index: 90;
-	display: inline-flex;
-	align-items: center;
-	gap: 8px;
-	padding: 14px 22px;
-	background: var(--brand-red);
-	color: #fff;
-	border-radius: var(--r-pill);
-	font-weight: 600;
-	font-size: 14px;
-	box-shadow: var(--shadow-red);
-	transition: background 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
-}
-.floating-quote-btn:hover { background: var(--brand-red-dark); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(220, 38, 38, 0.40); }
-.floating-quote-btn .pulse-dot {
-	width: 8px; height: 8px;
-	background: #4ade80;
-	border-radius: 50%;
-	animation: pulse-green 2s infinite;
-}
-@keyframes pulse-green {
-	0%   { box-shadow: 0 0 0 0   rgba(74, 222, 128, 0.55); }
-	70%  { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
-	100% { box-shadow: 0 0 0 0   rgba(74, 222, 128, 0); }
-}
-@media (max-width: 560px) {
-	.floating-quote-btn { padding: 12px 18px; font-size: 13px; bottom: 14px; right: 14px; }
-}
-
 /* ---- Quote modal ---------------------------------------------- */
 
 .quote-modal {
