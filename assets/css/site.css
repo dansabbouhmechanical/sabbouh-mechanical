@@ -290,6 +290,11 @@ small { font-size: 13px; }
 	align-items: center;
 	color: var(--brand-navy);
 }
+.brand-block {
+	display: flex;
+	flex-direction: column;
+	line-height: 1;
+}
 .brand-wordmark {
 	font-family: var(--font-display);
 	font-size: 26px;
@@ -303,6 +308,39 @@ small { font-size: 13px; }
 }
 @media (min-width: 480px) { .brand-wordmark { font-size: 30px; } }
 @media (min-width: 960px) { .brand-wordmark { font-size: 32px; } }
+
+/* ---- Brand tagline (used under wordmark + under logo image) -- */
+.brand-tagline {
+	font-family: var(--font-sans);
+	font-size: 10px;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	font-weight: 500;
+	line-height: 1;
+	white-space: nowrap;
+	color: var(--brand-navy);
+}
+.brand-tagline--dark { color: var(--color-text-muted); }
+
+.brand-block .brand-tagline { margin-top: 5px; }
+
+.logo-with-tagline {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+}
+.logo-with-tagline img { display: block; }
+
+@media (max-width: 640px) {
+	.brand-tagline {
+		font-size: 9px;
+		letter-spacing: 0.12em;
+	}
+}
+@media (max-width: 380px) {
+	.brand-block .brand-tagline { display: none; }
+}
 
 .primary-nav {
 	display: none;
@@ -769,19 +807,26 @@ small { font-size: 13px; }
 	display: inline-flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 12px;
 	background: #FFFFFF;
 	border: 1px solid rgba(255,255,255,0.10);
 	border-radius: var(--r-lg);
-	padding: 24px 36px;
+	padding: 26px 36px 22px;
 	box-shadow: 0 12px 32px rgba(0,0,0,0.35);
 }
-.about-emblem img { height: 64px; width: auto; margin-bottom: 14px; }
+.about-emblem img { height: 64px; width: auto; }
+.about-emblem .brand-tagline { color: var(--color-text-secondary); }
 .about-emblem__label {
 	font-size: 11px;
 	font-weight: 600;
 	letter-spacing: 0.16em;
 	text-transform: uppercase;
 	color: var(--brand-red);
+	margin-top: 4px;
+	padding-top: 10px;
+	border-top: 1px solid var(--color-border);
+	width: 100%;
+	text-align: center;
 }
 
 /* ---- Region card --------------------------------------------- */
@@ -903,11 +948,12 @@ a.contact-row__value:hover { color: var(--brand-red); }
 	align-items: center;
 	justify-content: center;
 	background: #FFFFFF;
-	padding: 14px 18px;
+	padding: 16px 22px 14px;
 	border-radius: 10px;
 	margin-bottom: 18px;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
+.footer-brand .logo-card .logo-with-tagline { gap: 10px; }
 .footer-brand .logo-card img {
 	height: 44px;
 	width: auto;
