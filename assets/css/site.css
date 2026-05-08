@@ -493,24 +493,24 @@ small { font-size: 13px; }
 	background: #0F2240;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: stretch;
 	padding: 0;
 	position: relative;
+	min-height: 100%;
 }
 
 .equipment-section {
-	padding: 28px 24px 16px;
 	flex: 1 1 auto;
+	padding: 40px 32px 24px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
-@media (min-width: 768px) { .equipment-section { padding: 32px 28px 18px; } }
 
 .hero-side-label {
 	display: block;
-	margin: 0 0 12px;
-	font-size: 10px;
+	margin: 0 0 16px;
+	font-size: 11px;
 	font-weight: 500;
 	color: #94A3B8;
 	letter-spacing: 0.18em;
@@ -520,16 +520,16 @@ small { font-size: 13px; }
 .equipment-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 8px;
+	gap: 12px;
 }
 .equipment-tile {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	padding: 14px 14px 12px;
-	min-height: 80px;
+	padding: 22px 20px 18px;
+	min-height: 110px;
 	background: #1A2A4A;
-	border-radius: 10px;
+	border-radius: 12px;
 	text-decoration: none;
 	transition: background 0.2s var(--ease), transform 0.2s var(--ease);
 }
@@ -539,8 +539,8 @@ small { font-size: 13px; }
 }
 .equipment-eyebrow {
 	display: block;
-	margin-bottom: 4px;
-	font-size: 9px;
+	margin-bottom: 6px;
+	font-size: 10px;
 	font-weight: 500;
 	color: var(--brand-amber);
 	letter-spacing: 0.16em;
@@ -549,23 +549,24 @@ small { font-size: 13px; }
 .equipment-name {
 	display: block;
 	color: #fff;
-	font-size: 13px;
+	font-size: 15px;
 	font-weight: 500;
-	line-height: 1.2;
+	line-height: 1.25;
 }
 
 .logo-ticker {
+	flex-shrink: 0;
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 16px;
 	background: rgba(0,0,0,0.30);
 	border-top: 1px solid rgba(255,255,255,0.10);
-	padding: 12px 24px;
+	padding: 16px 32px;
 	overflow: hidden;
 }
 .ticker-label {
 	flex-shrink: 0;
-	font-size: 9px;
+	font-size: 10px;
 	font-weight: 500;
 	color: #94A3B8;
 	letter-spacing: 0.18em;
@@ -574,11 +575,11 @@ small { font-size: 13px; }
 .ticker-list {
 	display: flex;
 	align-items: center;
-	gap: 14px;
+	gap: 18px;
 	min-width: 0;
 	overflow: hidden;
 	white-space: nowrap;
-	font-size: 11px;
+	font-size: 14px;
 	font-weight: 500;
 	color: #94A3B8;
 }
@@ -587,10 +588,12 @@ small { font-size: 13px; }
 .ticker-more { color: var(--brand-amber); font-weight: 600; }
 
 @media (max-width: 899px) {
-	.hero-stacked { order: -1; }
-	.equipment-section { padding: 22px 18px 14px; }
-	.logo-ticker { padding: 10px 18px; gap: 10px; }
-	.ticker-list { font-size: 10px; gap: 10px; }
+	.hero-stacked { order: -1; min-height: 0; }
+	.equipment-section { padding: 28px 20px 18px; }
+	.equipment-tile { min-height: 92px; padding: 16px; }
+	.equipment-name { font-size: 14px; }
+	.logo-ticker { padding: 12px 20px; gap: 12px; }
+	.ticker-list { font-size: 12px; gap: 12px; }
 }
 @media (max-width: 520px) {
 	.ticker-list .ticker-item:nth-of-type(n+4),
