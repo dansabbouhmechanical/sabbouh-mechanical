@@ -546,6 +546,11 @@ small { font-size: 13px; }
 	letter-spacing: 0.16em;
 	text-transform: uppercase;
 }
+.equipment-eyebrow .eyebrow-short { display: none; }
+@media (max-width: 1100px) {
+	.equipment-eyebrow .eyebrow-long { display: none; }
+	.equipment-eyebrow .eyebrow-short { display: inline; }
+}
 .equipment-name {
 	display: block;
 	color: #fff;
