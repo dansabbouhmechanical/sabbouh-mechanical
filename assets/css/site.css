@@ -263,9 +263,8 @@ small { font-size: 13px; }
 .utility-bar__right { display: inline-flex; align-items: center; }
 .utility-bar a { color: #fff; font-weight: 600; }
 .utility-bar a:hover { color: rgba(255,255,255,0.85); }
-@media (max-width: 640px) {
-	.utility-bar__left { display: none; }
-	.utility-bar__inner { justify-content: center; }
+@media (max-width: 768px) {
+	.utility-bar { display: none; }
 }
 
 /* ---- Header --------------------------------------------------- */
