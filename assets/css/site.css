@@ -6,7 +6,8 @@
 /* ---- Modern reset --------------------------------------------- */
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: hidden; }
+body { overflow-x: hidden; }
 body, h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 img, picture, svg, video { display: block; max-width: 100%; height: auto; }
@@ -771,9 +772,15 @@ small { font-size: 13px; }
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: var(--s-4);
+	max-width: 100%;
 }
 @media (min-width: 640px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .svc-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* 2-column variant for rich detail cards (overrides 4-col at desktop) */
+.svc-grid--2 { grid-template-columns: 1fr; }
+@media (min-width: 768px) { .svc-grid--2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .svc-grid--2 { grid-template-columns: repeat(2, 1fr); } }
 
 .svc-card {
 	display: flex;
@@ -812,8 +819,18 @@ small { font-size: 13px; }
 	border: 1px solid var(--color-border);
 	border-radius: var(--r-lg);
 	padding: 28px;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	min-width: 0;
 }
-.detail-card h3 { color: var(--brand-navy); margin-bottom: 8px; }
+.detail-card h3 {
+	color: var(--brand-navy);
+	margin-bottom: 8px;
+	line-height: 1.25;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
 .detail-card__desc { color: var(--color-text-secondary); margin-bottom: 18px; }
 .check-list { display: flex; flex-direction: column; gap: 10px; }
 .check-list li {
