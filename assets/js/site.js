@@ -1,22 +1,57 @@
 (function () {
 	'use strict';
 
-	// Mobile menu toggle
+	// Mobile slide-in menu
 	var toggle = document.querySelector('[data-menu-toggle]');
 	var menu = document.querySelector('[data-mobile-nav]');
-	if (toggle && menu) {
-		toggle.addEventListener('click', function () {
-			var open = menu.classList.toggle('is-open');
-			toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-		});
+	var backdrop = document.querySelector('[data-menu-backdrop]');
+
+	function openMenu() {
+		if (!toggle || !menu) return;
+		toggle.setAttribute('aria-expanded', 'true');
+		toggle.setAttribute('aria-label', 'Close menu');
+		menu.classList.add('is-open');
+		menu.setAttribute('aria-hidden', 'false');
+		if (backdrop) backdrop.classList.add('is-open');
+		document.body.style.overflow = 'hidden';
 	}
 
-	// Close mobile menu when a link is tapped
-	if (menu) {
+	function closeMenu() {
+		if (!toggle || !menu) return;
+		toggle.setAttribute('aria-expanded', 'false');
+		toggle.setAttribute('aria-label', 'Open menu');
+		menu.classList.remove('is-open');
+		menu.setAttribute('aria-hidden', 'true');
+		if (backdrop) backdrop.classList.remove('is-open');
+		document.body.style.overflow = '';
+	}
+
+	if (toggle && menu) {
+		toggle.addEventListener('click', function () {
+			var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+			if (isOpen) { closeMenu(); } else { openMenu(); }
+		});
+
 		menu.addEventListener('click', function (e) {
-			if (e.target.tagName === 'A') {
-				menu.classList.remove('is-open');
-				if (toggle) toggle.setAttribute('aria-expanded', 'false');
+			var target = e.target;
+			while (target && target !== menu) {
+				if (target.tagName === 'A' || target.tagName === 'BUTTON') { closeMenu(); break; }
+				target = target.parentNode;
+			}
+		});
+
+		if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+				closeMenu();
+			}
+		});
+
+		// Close menu if viewport grows past mobile breakpoint
+		window.addEventListener('resize', function () {
+			if (window.innerWidth >= 960 && toggle.getAttribute('aria-expanded') === 'true') {
+				closeMenu();
 			}
 		});
 	}
