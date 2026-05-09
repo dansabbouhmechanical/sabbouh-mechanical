@@ -66,22 +66,27 @@
 				<a href="contact.html">Contact</a>
 			</nav>
 			<button class="btn btn--primary btn--sm header-cta" type="button" data-quote-open>Book Free Quote</button>
-			<button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+			<button class="hamburger-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
 		</div>
-		<nav class="mobile-nav" data-mobile-nav>
-			<a href="index.html" class="is-current">Home</a>
-			<a href="commercial.html">Commercial</a>
-			<a href="residential.html">Residential</a>
-			<a href="ice-machines.html">Ice Machines</a>
-			<a href="trailer-rentals.html">Trailer Rentals</a>
-			<a href="about.html">About</a>
-			<a href="contact.html">Contact</a>
-			<div class="mobile-nav__cta">
-				<a class="btn btn--outline" href="tel:9052526106">Call</a>
-				<button class="btn btn--primary" type="button" data-quote-open>Quote</button>
-			</div>
-		</nav>
 	</header>
+	<nav class="mobile-menu" id="mobile-menu" data-mobile-nav aria-hidden="true" aria-label="Mobile">
+		<div class="mobile-menu__inner">
+			<a href="index.html" class="mobile-menu__link is-current">Home</a>
+			<a href="commercial.html" class="mobile-menu__link">Commercial</a>
+			<a href="residential.html" class="mobile-menu__link">Residential</a>
+			<a href="ice-machines.html" class="mobile-menu__link">Ice Machines</a>
+			<a href="trailer-rentals.html" class="mobile-menu__link">Trailer Rentals</a>
+			<a href="about.html" class="mobile-menu__link">About</a>
+			<a href="contact.html" class="mobile-menu__link">Contact</a>
+			<div class="mobile-menu__divider"></div>
+			<a href="tel:9052526106" class="mobile-menu__phone">
+				<span class="mobile-menu__phone-label">Call us</span>
+				<span class="mobile-menu__phone-number">(905) 252-6106</span>
+			</a>
+			<button class="mobile-menu__cta" type="button" data-quote-open>Book Free Quote</button>
+		</div>
+	</nav>
+	<div class="mobile-menu-backdrop" data-menu-backdrop aria-hidden="true"></div>
 
 	<!-- Hero (split) -->
 	<section class="hero-split">
