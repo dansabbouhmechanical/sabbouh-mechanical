@@ -996,7 +996,7 @@ small { font-size: 13px; }
 /* ---- About page logo feature --------------------------------- */
 
 .about-emblem {
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 12px;
@@ -1005,6 +1005,13 @@ small { font-size: 13px; }
 	border-radius: var(--r-lg);
 	padding: 26px 36px 22px;
 	box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+	width: fit-content;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+@media (max-width: 640px) {
+	.about-emblem { padding: 22px 20px 18px; width: 100%; }
 }
 .about-emblem img { height: 64px; width: auto; }
 .about-emblem .brand-tagline { color: var(--color-text-secondary); }
