@@ -692,7 +692,7 @@ small { font-size: 13px; }
 .ticker-more { color: var(--brand-amber); font-weight: 600; }
 
 @media (max-width: 899px) {
-	.hero-stacked { order: -1; min-height: 0; }
+	.hero-stacked { min-height: 0; }
 	.equipment-section { padding: 28px 20px 18px; }
 	.equipment-tile { min-height: 92px; padding: 16px; }
 	.equipment-name { font-size: 14px; }
