@@ -1,32 +1,91 @@
 (function () {
 	'use strict';
 
+	// ---- Quote form submission (modal + inline contact form) -------
+
+	function setupForm(form) {
+		var scope = form.closest('[data-quote-scope]') || form.parentNode;
+		var submitBtn = form.querySelector('[data-quote-submit]');
+		var submitLabel = submitBtn ? submitBtn.querySelector('.quote-submit__label') : null;
+		var defaultSubmitText = submitLabel ? submitLabel.textContent : 'Request My Quote';
+		var errorBox = form.querySelector('[data-quote-error]');
+		var formWrap = scope.querySelector('[data-quote-form-wrap]');
+		var successBox = scope.querySelector('[data-quote-success]');
+
+		function setBusy(busy) {
+			submitBtn.disabled = busy;
+			submitBtn.classList.toggle('is-loading', busy);
+			if (submitLabel) submitLabel.textContent = busy ? 'Sending...' : defaultSubmitText;
+			var fields = form.querySelectorAll('input:not([type="hidden"]), select, textarea');
+			for (var i = 0; i < fields.length; i++) fields[i].readOnly = busy;
+		}
+
+		function showSuccess() {
+			if (formWrap) formWrap.hidden = true;
+			if (successBox) {
+				successBox.hidden = false;
+				var title = successBox.querySelector('.quote-success__title');
+				if (title) {
+					title.setAttribute('tabindex', '-1');
+					title.focus();
+				}
+			}
+			form.dispatchEvent(new CustomEvent('quote:sent', { bubbles: true }));
+		}
+
+		function showError() {
+			if (errorBox) errorBox.hidden = false;
+			setBusy(false);
+		}
+
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+			if (errorBox) errorBox.hidden = true;
+
+			if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+				form.reportValidity();
+				return;
+			}
+
+			// Collect data before touching field state: disabled fields are excluded from FormData.
+			var data = new FormData(form);
+			setBusy(true);
+
+			fetch(form.getAttribute('action'), {
+				method: 'POST',
+				body: data,
+				headers: { 'Accept': 'application/json' }
+			}).then(function (response) {
+				if (response.ok) { showSuccess(); } else { showError(); }
+			}).catch(showError);
+		});
+
+		form.resetQuote = function () {
+			form.reset();
+			if (errorBox) errorBox.hidden = true;
+			setBusy(false);
+			if (formWrap) formWrap.hidden = false;
+			if (successBox) successBox.hidden = true;
+		};
+	}
+
+	var forms = document.querySelectorAll('[data-quote-form]');
+	for (var f = 0; f < forms.length; f++) setupForm(forms[f]);
+
+	// ---- Modal ----------------------------------------------------
+
 	var modal = document.getElementById('quoteModal');
 	if (!modal) return;
 
 	var openers = document.querySelectorAll('[data-quote-open]');
 	var closers = modal.querySelectorAll('[data-quote-close]');
 	var panel = modal.querySelector('.quote-modal__panel');
-	var form = modal.querySelector('[data-quote-form]');
-	var submitBtn = modal.querySelector('[data-quote-submit]');
-	var errorBox = modal.querySelector('[data-quote-error]');
-	var formWrap = modal.querySelector('[data-quote-form-wrap]');
-	var successBox = modal.querySelector('[data-quote-success]');
-	var replyToInput = modal.querySelector('[data-quote-replyto]');
+	var modalForm = modal.querySelector('[data-quote-form]');
+	var serviceSelect = modal.querySelector('select[name="service"]');
 
 	var lastTrigger = null;
 	var autoCloseTimer = null;
-	var submitLabel = submitBtn ? submitBtn.querySelector('.quote-submit__label') : null;
-	var defaultSubmitText = submitLabel ? submitLabel.textContent : 'Request My Quote';
 	var focusableSelector = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
-	function setFieldsDisabled(disabled) {
-		if (!form) return;
-		var fields = form.querySelectorAll('input:not([type="hidden"]), select, textarea');
-		for (var k = 0; k < fields.length; k++) {
-			fields[k].disabled = disabled;
-		}
-	}
 
 	function getFocusable() {
 		return Array.prototype.slice.call(panel.querySelectorAll(focusableSelector))
@@ -37,14 +96,13 @@
 		lastTrigger = trigger || document.activeElement;
 		modal.hidden = false;
 		document.body.classList.add('quote-modal-open');
-		// Force reflow so the transition fires
-		void modal.offsetWidth;
 		modal.classList.add('is-open');
 
-		var firstField = form.querySelector('input, select, textarea');
-		if (firstField) {
-			window.setTimeout(function () { firstField.focus(); }, 50);
-		}
+		var preset = trigger && trigger.getAttribute('data-quote-service');
+		if (preset && serviceSelect) serviceSelect.value = preset;
+
+		var firstField = modalForm && modalForm.querySelector('input:not([type="hidden"]):not([tabindex="-1"]), select, textarea');
+		if (firstField) window.setTimeout(function () { firstField.focus(); }, 50);
 
 		document.addEventListener('keydown', onKeydown);
 	}
@@ -53,113 +111,41 @@
 		modal.classList.remove('is-open');
 		document.body.classList.remove('quote-modal-open');
 		document.removeEventListener('keydown', onKeydown);
-
 		window.clearTimeout(autoCloseTimer);
 		autoCloseTimer = null;
 
 		window.setTimeout(function () {
 			modal.hidden = true;
-			resetForm();
-			if (lastTrigger && typeof lastTrigger.focus === 'function') {
-				lastTrigger.focus();
-			}
+			if (modalForm && modalForm.resetQuote) modalForm.resetQuote();
+			if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
 		}, 200);
 	}
 
-	function resetForm() {
-		if (!form || !formWrap || !successBox) return;
-		form.reset();
-		errorBox.hidden = true;
-		submitBtn.disabled = false;
-		submitBtn.classList.remove('is-loading');
-		if (submitLabel) submitLabel.textContent = defaultSubmitText;
-		setFieldsDisabled(false);
-		formWrap.hidden = false;
-		successBox.hidden = true;
-	}
-
 	function onKeydown(e) {
-		if (e.key === 'Escape' || e.keyCode === 27) {
+		if (e.key === 'Escape') {
 			e.preventDefault();
 			closeModal();
 			return;
 		}
-		if (e.key === 'Tab' || e.keyCode === 9) {
-			trapFocus(e);
-		}
-	}
-
-	function trapFocus(e) {
-		var focusable = getFocusable();
-		if (focusable.length === 0) return;
-		var first = focusable[0];
-		var last = focusable[focusable.length - 1];
-		var active = document.activeElement;
-
-		if (e.shiftKey && active === first) {
-			e.preventDefault();
-			last.focus();
-		} else if (!e.shiftKey && active === last) {
-			e.preventDefault();
-			first.focus();
-		}
-	}
-
-	function showSuccess() {
-		formWrap.hidden = true;
-		successBox.hidden = false;
-		// Move focus to the success heading for screen readers
-		var title = successBox.querySelector('.quote-success__title');
-		if (title) {
-			title.setAttribute('tabindex', '-1');
-			title.focus();
-		}
-		autoCloseTimer = window.setTimeout(closeModal, 4000);
-	}
-
-	function showError() {
-		errorBox.hidden = false;
-		submitBtn.disabled = false;
-		submitBtn.classList.remove('is-loading');
-		if (submitLabel) submitLabel.textContent = defaultSubmitText;
-		setFieldsDisabled(false);
-	}
-
-	function handleSubmit(e) {
-		e.preventDefault();
-		errorBox.hidden = true;
-
-		// Native validation
-		if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
-			form.reportValidity();
-			return;
-		}
-
-		if (replyToInput) {
-			var phoneInput = form.querySelector('input[name="phone"]');
-			if (phoneInput) replyToInput.value = phoneInput.value;
-		}
-
-		var action = form.getAttribute('action') || '';
-
-		submitBtn.disabled = true;
-		submitBtn.classList.add('is-loading');
-		if (submitLabel) submitLabel.textContent = 'Sending...';
-		setFieldsDisabled(true);
-
-		var data = new FormData(form);
-
-		fetch(action, {
-			method: 'POST',
-			body: data,
-			headers: { 'Accept': 'application/json' }
-		}).then(function (response) {
-			if (response.ok) {
-				showSuccess();
-			} else {
-				return response.json().then(function () { showError(); }).catch(showError);
+		if (e.key === 'Tab') {
+			var focusable = getFocusable();
+			if (focusable.length === 0) return;
+			var first = focusable[0];
+			var last = focusable[focusable.length - 1];
+			if (e.shiftKey && document.activeElement === first) {
+				e.preventDefault();
+				last.focus();
+			} else if (!e.shiftKey && document.activeElement === last) {
+				e.preventDefault();
+				first.focus();
 			}
-		}).catch(showError);
+		}
+	}
+
+	if (modalForm) {
+		modalForm.addEventListener('quote:sent', function () {
+			autoCloseTimer = window.setTimeout(closeModal, 6000);
+		});
 	}
 
 	for (var i = 0; i < openers.length; i++) {
@@ -174,9 +160,5 @@
 			e.preventDefault();
 			closeModal();
 		});
-	}
-
-	if (form) {
-		form.addEventListener('submit', handleSubmit);
 	}
 })();

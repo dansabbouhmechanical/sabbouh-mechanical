@@ -4,3 +4,6 @@
 # Personal/tax documents
 *.pdf
 2703037 Ontario Inc.*
+
+# Local-only files (not deployed)
+_archive/
